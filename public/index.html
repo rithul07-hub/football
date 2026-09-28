@@ -1,1 +1,33 @@
 !
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LUXEWEAR — The Archive</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div class="vignette"></div>
+<div class="brand sans">LUXEWEAR</div>
+<div class="kicker sans" id="kicker"></div>
+<div class="reveal serif" id="reveal"><div class="country sans" id="country"></div><div class="num" id="num"></div></div>
+<nav class="archive sans" id="archiveNav"></nav>
+<footer class="finale" id="finale">
+  <div class="line sans" id="finaleTop">FIVE IDENTITIES. ONE FORM.</div>
+  <div class="word serif">LUXEWEAR</div>
+  <div class="line sans">THE JERSEY ARCHIVE</div>
+</footer>
+<div class="fallback sans" id="fallback">
+  <div class="word serif">LUXEWEAR</div>
+  <div style="opacity:.6;font-size:.85rem;max-width:26em;">Your browser can't render the particle scene — here's the archive:</div>
+  <div id="fallbackList" style="font-size:.85rem;line-height:2;letter-spacing:.08em;"></div>
+</div>
+<div class="spacer"></div>
+<script src="js/vendor/three.min.js"></script>
+<script>window.THREE||document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>')</script>
+<script src="js/app.js"></script>
+</body>
+</html>
