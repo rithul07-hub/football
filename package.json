@@ -1,0 +1,13 @@
+{
+  "name": "luxewear-archive",
+  "version": "1.0.0",
+  "description": "LUXEWEAR - The Jersey Archive: scroll-driven Three.js particle experience",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "private": true
+}
