@@ -1,1 +1,47 @@
-vsdhbv
+:root{color-scheme:dark;--bg:#050506;--fg:#f2efe9;--muted:rgba(242,239,233,.55);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#050506;--fg:#f2efe9;--muted:rgba(242,239,233,.55);}}
+:root[data-theme="dark"]{--bg:#050506;--fg:#f2efe9;--muted:rgba(242,239,233,.55);}
+*{box-sizing:border-box;margin:0;padding:0;}
+/* FIX: never combine height:100% + overflow on <body> (or on both html and body).
+   That turns <body> into its own scroll container, window.scrollY stays 0 and the
+   scroll-driven scene never leaves its first frame. Keep overflow on <html> only. */
+html{background:var(--bg);overflow-x:hidden;}
+body{background:var(--bg);color:var(--fg);}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{padding-bottom:env(safe-area-inset-bottom,0px);}
+.serif{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;}
+.sans{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+canvas#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center, transparent 40%, var(--bg) 96%);}
+.spacer{position:relative;height:1100vh;pointer-events:none;}
+.brand{position:fixed;left:6vw;top:calc(4vh + env(safe-area-inset-top,0px));font-size:.65rem;letter-spacing:.3em;opacity:.5;z-index:6;}
+.kicker{position:fixed;top:calc(8vh + env(safe-area-inset-top,0px));left:0;right:0;text-align:center;font-size:.7rem;letter-spacing:.35em;color:var(--muted);opacity:0;transition:opacity 1s ease;pointer-events:none;}
+.kicker.show{opacity:1;}
+.reveal{position:fixed;left:6vw;bottom:calc(8vh + env(safe-area-inset-bottom,0px));opacity:0;transition:opacity 1.1s ease;pointer-events:none;}
+.reveal.show{opacity:1;}
+.reveal .country{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;font-size:clamp(1.3rem,3vw,2.1rem);font-weight:300;letter-spacing:.05em;}
+.reveal .num{font-size:.68rem;letter-spacing:.3em;color:var(--muted);margin-top:.5em;}
+nav.archive{position:fixed;right:5vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:6;}
+nav.archive button{background:none;border:0;color:var(--muted);cursor:pointer;text-align:right;font-size:.65rem;letter-spacing:.2em;padding:2px 0;font-family:inherit;transition:color .4s;}
+nav.archive button.active{color:var(--fg);}
+footer.finale{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1em;opacity:0;transition:opacity 1.4s ease;text-align:center;pointer-events:none;}
+footer.finale.show{opacity:1;}
+footer.finale .line{font-size:.7rem;letter-spacing:.35em;color:var(--muted);}
+footer.finale .word{font-size:clamp(2rem,6vw,3.2rem);font-weight:300;}
+.fallback{display:none;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:1.2em;padding:2em;}
+.fallback .word{font-size:2rem;font-weight:300;letter-spacing:.15em;}
+@media (prefers-reduced-motion: reduce){.kicker,.reveal,footer.finale{transition-duration:.2s;}}
+
+/* archive navigation: categories; the active one expands to its editions */
+nav.archive{gap:14px;align-items:flex-end;}
+nav.archive .cat{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+nav.archive .eds{display:none;flex-direction:column;align-items:flex-end;gap:3px;}
+nav.archive .cat.active .eds{display:flex;}
+nav.archive .cat.active .ch{color:var(--fg);}
+nav.archive .ed{font-size:.58rem;}
+@media (max-width:700px){
+  nav.archive{left:0;right:0;top:auto;bottom:calc(3vh + env(safe-area-inset-bottom,0px));transform:none;flex-direction:row;align-items:center;gap:22px;padding:0 6vw;overflow-x:auto;scrollbar-width:none;}
+  nav.archive .cat.active .eds{display:none;}
+  nav.archive button{white-space:nowrap;}
+  .reveal{bottom:calc(11vh + env(safe-area-inset-bottom,0px));}
+}
